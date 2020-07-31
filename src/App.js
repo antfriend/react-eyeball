@@ -1,11 +1,14 @@
 import React from "react";
 import "./styles.css";
+import Eyeball from "./Eyeball";
 
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start additing to see some magic happen!</h2>
+      <h1>react-eyeball</h1>
+      <Eyeball />
+      <h2>the eyeball you've always wanted!</h2>
+      inspired by this <a href="https://youtu.be/tyjrJZVei30">eyeball robot</a>
     </div>
   );
 }

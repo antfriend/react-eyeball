@@ -8,7 +8,9 @@ export default function App() {
       <h1>react-eyeball</h1>
       <Eyeball />
       <h2>the eyeball you've always wanted!</h2>
-      inspired by this <a href="https://youtu.be/tyjrJZVei30">eyeball robot</a>
+      <a href="https://0msqf.csb.app/">example</a><br/>
+      it resembles my <a href="https://youtu.be/tyjrJZVei30">eyeball robot</a><br/>
+      behaves like my other <a href="https://youtu.be/-3fQGa2TRlY">eyeball robot</a><br/>
     </div>
   );
 }

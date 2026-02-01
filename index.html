@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>react-eyeball (no build)</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        background: #f7f7f7;
+      }
+      .wrapper {
+        text-align: center;
+      }
+      .eyeball {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>react-eyeball</h1>
+      <svg class="eyeball" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="white" />
+        <ellipse id="iris" cx="50" cy="50" rx="20" ry="20" stroke="black" stroke-width="1" fill="red" />
+        <ellipse id="pupil" cx="50" cy="50" rx="10" ry="10" stroke="black" stroke-width="1" fill="black" />
+        <circle cx="42" cy="42" r="9" stroke="white" stroke-width="0" fill="white" fill-opacity="0.8" />
+      </svg>
+      <h2>the eyeball you've always wanted!</h2>
+    </div>
+
+    <script>
+      (function () {
+        const iris = document.getElementById("iris");
+        const pupil = document.getElementById("pupil");
+
+        const randomOffset = () => 50 + Math.floor(Math.random() * 25 - 12);
+        let x = randomOffset();
+        let y = randomOffset();
+
+        const apply = (nx, ny) => {
+          x = nx;
+          y = ny;
+          iris.setAttribute("cx", x);
+          iris.setAttribute("cy", y);
+          pupil.setAttribute("cx", x);
+          pupil.setAttribute("cy", y);
+        };
+
+        const tick = () => apply(randomOffset(), randomOffset());
+        let timer = setInterval(tick, Math.floor(Math.random() * (3000 - 1500 + 1) + 1500));
+
+        const map = (value, x1, y1, x2, y2) => ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
+
+        const handleMove = (ev) => {
+          const lookX = 50 + map(ev.clientX, 0 + x, 1000 - x, -12, 12);
+          const lookY = 50 + map(ev.clientY, 0 + y, 1000 - y, -12, 12);
+          apply(lookX, lookY);
+        };
+
+        window.addEventListener("mousemove", handleMove, { capture: true });
+
+        window.addEventListener("beforeunload", () => {
+          clearInterval(timer);
+          window.removeEventListener("mousemove", handleMove, { capture: true });
+        });
+      })();
+    </script>
+  </body>
+</html>

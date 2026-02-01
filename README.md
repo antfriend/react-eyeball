@@ -1,5 +1,3 @@
-<iframe src="https://antfriend.github.io/"></iframe>
-
 # eyeballs
 
 ## the eyeballs you've always wanted!
